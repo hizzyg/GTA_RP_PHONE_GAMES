@@ -119,7 +119,13 @@ export default new Router({
       path: '/9gag',
       name: '9gag',
       component: App9GAG
-    }, {
+    },
+    {
+      path: '/9gag',
+      name: 'ANAN',
+      component: App9GAG
+    },
+    {
       path: '*',
       redirect: '/'
     }

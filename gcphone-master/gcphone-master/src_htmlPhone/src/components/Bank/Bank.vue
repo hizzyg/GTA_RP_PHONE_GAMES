@@ -1,10 +1,21 @@
 <template>
-  <canvas style="align:center;border: lpx solid black" id="myCanvas" height="700" width="400"></canvas>
+  <div class="screen" @click="onBackspace">
+    <div canvas style="align:center;border: 1px solid black" id="myCanvas" height="auto" width="auto"></div>
+  </div>
 </template>
 
-
 <script>
-src="/Bank.js"
+export default {
+  data () {
+    return {
+    }
+  },
+  methods: {
+    onBackspace () {
+      this.$router.push({ name: 'home' })
+    }
+  }
+}
 </script>
 
 <style scoped>
