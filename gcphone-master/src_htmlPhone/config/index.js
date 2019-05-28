@@ -7,7 +7,7 @@ module.exports = {
     index: path.resolve(__dirname, '../../resources/gcphone/html/index.html'),
     assetsRoot: path.resolve(__dirname, '../../resources/gcphone/html'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/html/',
+    assetsPublicPath: './html/',
     productionSourceMap: false,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.

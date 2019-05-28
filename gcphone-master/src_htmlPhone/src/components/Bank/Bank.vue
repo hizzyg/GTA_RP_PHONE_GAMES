@@ -1,19 +1,41 @@
 <template>
   <div class="screen" @click="onBackspace">
-    <div canvas style="align:center;border: 1px solid black" id="myCanvas" height="auto" width="auto"></div>
+    <div class='elements'>
+      <img class="logo_maze" src="/html/static/img/app_bank/logo_mazebank.jpg">
+      <div class="hr"></div>
+      <div class='element'>
+        <div class="element-content">
+          <span>$ {{ bankAmontFormat }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
+    }
+  },
+  computed: {
+    ...mapGetters(['bankAmont']),
+    bankAmontFormat () {
+      return Intl.NumberFormat().format(this.bankAmont)
     }
   },
   methods: {
     onBackspace () {
       this.$router.push({ name: 'home' })
     }
+  },
+  created () {
+    this.$bus.$on('keyUpBackspace', this.onBackspace)
+  },
+  beforeDestroy () {
+    this.$bus.$off('keyUpBackspace', this.onBackspace)
   }
 }
 </script>

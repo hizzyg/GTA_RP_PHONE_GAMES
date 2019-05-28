@@ -27,6 +27,8 @@ import Bank from '@/components/Bank/Bank'
 import Bourse from '@/components/Bourse/Bourse'
 import Photo from '@/components/Photo/Photo'
 
+import Snake from '@/components/Snake'
+
 import App9GAG from '@/components/App9GAG'
 
 Vue.use(Router)
@@ -119,13 +121,11 @@ export default new Router({
       path: '/9gag',
       name: '9gag',
       component: App9GAG
-    },
-    {
-      path: '/9gag',
-      name: 'ANAN',
-      component: App9GAG
-    },
-    {
+    }, {
+      path: '/Snake',
+      name: 'snake',
+      component: Snake
+    }, {
       path: '*',
       redirect: '/'
     }

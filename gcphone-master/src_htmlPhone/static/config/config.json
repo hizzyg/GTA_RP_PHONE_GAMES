@@ -40,6 +40,7 @@
 
   "background": {
     "Calvin & Hobbes": "back001.jpg",
+    "Destiny": "back002.jpg",
     "Stormtrooper": "back003.jpg",
     "Custom URL": "URL"
   },
@@ -213,11 +214,12 @@
       "name": "9GAG",
       "icons": "/html/static/img/icons_app/9gag.png",
       "routeName": "9gag"
-    },
+    }
+    ,
     {
-      "name": "9GAG",
+      "name": "SNAKE",
       "icons": "/html/static/img/icons_app/9gag.png",
-      "routeName": "ANAN"
+      "routeName": "snake"
     }
   ],
   "defaultLanguage": "en_US",
