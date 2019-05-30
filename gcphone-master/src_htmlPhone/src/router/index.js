@@ -29,6 +29,8 @@ import Photo from '@/components/Photo/Photo'
 
 import Snake from '@/components/Snake'
 
+import LokiStore from '@/components/LokiStore'
+
 import App9GAG from '@/components/App9GAG'
 
 Vue.use(Router)
@@ -125,7 +127,13 @@ export default new Router({
       path: '/Snake',
       name: 'snake',
       component: Snake
-    }, {
+    },
+    {
+      path: '/LokiStore',
+      name: 'lokistore',
+      component: LokiStore
+    },
+    {
       path: '*',
       redirect: '/'
     }

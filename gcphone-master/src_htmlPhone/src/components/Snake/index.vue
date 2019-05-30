@@ -1,30 +1,28 @@
 <template>
-  <div class="phone_app">
+  <div class="phone_app main-frame">
     <table v-if="!dead">
       <tr v-for="row in grid" :key="row.id">
         <td v-for="cell in row" :key="cell.id" class="grid-cell" :class="{ snake: cell.snake > 0, food: cell.food }">
         </td>
       </tr>
     </table>
-    <div v-else>
-      You Died. <a @click="start">Play Again?</a>
+    <div v-else class="margin">
+      <p style="color: #fff"> Öldün, yeniden oynamak için Enter tuşuna basın </p>
     </div>
   </div>
 </template>
 
 <style>
-  .phone_app
-  {
-    height: 100%;
-    width: 100%;
+  .main-frame {
+	background-color: #000;
   }
   a {
     cursor: pointer;
     color: #006aff;
   }
-
   table {
     border-collapse: collapse;
+    margin-top: 7px;
   }
 
   .grid-cell {
@@ -42,6 +40,11 @@
 
   .snake {
     background-color: #3e3e3e;
+  }
+  
+  .margin {
+	background-color: #000;
+	padding: 20%;
   }
 </style>
 
@@ -73,6 +76,7 @@
       this.start();
       window.addEventListener('keydown', event => this.handleUserAction(event.which));
       this.$bus.$on('keyUpBackspace', this.quit)
+      this.$bus.$on('keyUpEnter', this.restart)
     },
 
     data() {
@@ -87,8 +91,8 @@
         let direction = keyMap[key];
         if (direction) {
             userActions.push(() => {
-            if (direction[0] + this.direction[0] === 0 && direction[1] + this.direction[1] === 0) {
-              return; // ignore opposite direction presses
+            if (direction[0] + this.direction[0] === 0 && direction[1] + this.direction[1] === 0 && this.pressCount == this.zeroOne) {
+              return;
             }
             this.direction = direction
             
@@ -98,8 +102,8 @@
         }
       },
       start() {
-        let size = 30, ms = 80;
-        this.grid = new Grid(size, (x, y) => ({x, y, snake: 0, food: false}));
+        let sizeX = 60, sizeY = 30, ms = 80;
+        this.grid = new Grid(sizeX, sizeY, (x, y) => ({x, y, snake: 0, food: false}));
         this.dead = false;
         userActions = [];
         length = 5;
@@ -110,6 +114,8 @@
         snakeCells = [snakePos];
         this.setFood();
         let startGame = 0;
+        let zeroOne = 1;
+        this.pressCount = 0;
       },
 
       tick() {
@@ -123,6 +129,7 @@
 
       moveSnake() {
         if(this.startGame == 1){
+          this.zeroOne = 0;
           let {x, y} = snakePos;
           let [xd, yd] = this.direction;
           snakePos = (this.grid[x + xd] || [])[y + yd];
@@ -161,7 +168,13 @@
         
         this.$router.push({ name: 'home' })
         window.location.reload()
-      }
+      },
+	  
+	  restart: function () {
+		if(this.dead){
+			this.start();
+		}
+	  }
     },
     beforeDestroy: function () {
       this.$bus.$off('keyUpBackspace', this.quit)

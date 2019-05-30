@@ -1,9 +1,9 @@
 class Grid extends Array {
-  constructor (size, valueFn) {
+  constructor (sizeY, sizeX, valueFn) {
     super()
-    for (var i = 0; i < size; i++) {
+    for (var i = 0; i < sizeY; i++) {
       this[i] = []
-      for (var j = 0; j < size; j++) {
+      for (var j = 0; j < sizeX; j++) {
         this[i][j] = valueFn(i, j)
       }
     }

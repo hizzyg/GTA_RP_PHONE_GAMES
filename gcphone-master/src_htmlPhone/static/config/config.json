@@ -116,7 +116,8 @@
       "es_ES__name": "Twitter",
       "icons": "/html/static/img/icons_app/twitter.png",
       "routeName": "twitter.splash",
-      "inHomePage": true
+      "inHomePage": true,
+      "inMenuPage": true
     },
     {
       "name": "Mobilphone",
@@ -128,7 +129,8 @@
       "es_ES__name": "llamar",
       "icons": "/html/static/img/icons_app/call.png",
       "routeName": "appels",
-      "inHomePage": true
+      "inHomePage": true,
+      "inMenuPage": true
     },
     {
       "name": "Messages",
@@ -141,7 +143,8 @@
       "icons": "/html/static/img/icons_app/sms.png",
       "routeName": "messages",
       "inHomePage": true,
-      "puceRef": "nbMessagesUnread"
+      "puceRef": "nbMessagesUnread",
+      "inMenuPage": true
     },
     {
       "name": "Contacts",
@@ -153,7 +156,8 @@
       "es_ES__name": "Contactos",
       "icons": "/html/static/img/icons_app/contacts.png",
       "routeName": "contacts",
-      "inHomePage": true
+      "inHomePage": true,
+      "inMenuPage": true
     },
     {
       "name": "Settings",
@@ -165,7 +169,8 @@
       "es_ES__name": "Ajustes",
       "icons": "/html/static/img/icons_app/settings.png",
       "routeName": "parametre",
-      "inHomePage": true
+      "inHomePage": true,
+      "inMenuPage": true
     },
     {
       "name": "Bank",
@@ -177,7 +182,8 @@
       "es_ES__name": "Banquillo",
       "icons": "/html/static/img/icons_app/bank.png",
       "routeName": "bank",
-      "inHomePage": false
+      "inHomePage": false,
+      "inMenuPage": true
     },
     {
       "name": "Bourse",
@@ -187,7 +193,8 @@
       "de_DE__name": "Börse",
       "icons": "/html/static/img/icons_app/bourse.png",
       "routeName": "bourse",
-      "enabled": true
+      "enabled": true,
+      "inMenuPage": true
     },
     {
       "name": "Camera",
@@ -198,7 +205,8 @@
       "pl_PL__name": "Kamera",
       "es_ES__name": "Cámara",
       "icons": "/html/static/img/icons_app/photo.png",
-      "routeName": "photo"
+      "routeName": "photo",
+      "inMenuPage": true
     },
     {
       "name": "Dark Chat",
@@ -208,18 +216,26 @@
       "pl_PL__name": "Czat czarny",
       "es_ES__name": "Chat Oscuro",
       "icons": "/html/static/img/icons_app/tchat.png",
-      "routeName": "tchat"
+      "routeName": "tchat",
+      "inMenuPage": true
     },
     {
       "name": "9GAG",
       "icons": "/html/static/img/icons_app/9gag.png",
       "routeName": "9gag"
-    }
-    ,
+    },
     {
-      "name": "SNAKE",
-      "icons": "/html/static/img/icons_app/9gag.png",
-      "routeName": "snake"
+      "name": "Snake",
+      "icons": "/html/static/img/icons_app/snake.png",
+      "routeName": "snake",
+      "inLokiPage": true
+    },
+    {
+      "name": "LokiStore",
+      "icons": "/html/static/img/icons_app/lokistore.png",
+      "routeName": "lokistore",
+      "inHomePage": true,
+      "inMenuPage": true
     }
   ],
   "defaultLanguage": "en_US",

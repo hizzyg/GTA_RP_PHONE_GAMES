@@ -1,88 +1,64 @@
 <template>
+<div class="main">
   <div class="phone_app">
-    <div class="backblur" v-bind:style="{background: 'url(' + backgroundURL +')'}"></div>
-    <InfoBare class="infobare"/>
     <div class="menu" @click="onBack">
-      
       <div class="menu_content">
-      
           <div class='menu_buttons'>
             <button 
-                v-for="(but, key) of AppsMenu" 
+                v-for="(but, key) of AppsLoki" 
                 v-bind:key="but.name" 
                 v-bind:class="{ select: key === currentSelect}"
                 v-bind:style="{backgroundImage: 'url(' + but.icons +')'}"
-                @click.stop="openApp(but)"
-              >
+                @click.stop="openApp(but)">
                 {{but.intlName}}
                 <span class="puce" v-if="but.puce !== undefined && but.puce !== 0">{{but.puce}}</span>
             </button>
           </div>
-      </div> 
+      </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import InfoBare from './InfoBare'
+import { mapGetters, mapActions } from 'vuex'
+import InfoBare from '../InfoBare'
 
 export default {
   components: {
     InfoBare
   },
-  data: function () {
+  data () {
     return {
       currentSelect: 0
     }
   },
   computed: {
-    ...mapGetters(['nbMessagesUnread', 'backgroundURL', 'AppsMenu', 'useMouse'])
+    ...mapGetters(['AppsLoki'])
   },
   methods: {
-    ...mapGetters(['closePhone']),
-    onLeft: function () {
-      const l = Math.floor(this.currentSelect / 4)
-      const newS = (this.currentSelect + 4 - 1) % 4 + l * 4
-      this.currentSelect = Math.min(newS, this.AppsMenu.length - 1)
+    ...mapActions(['closePhone']),
+    onLeft () {
+      this.currentSelect = (this.currentSelect + this.AppsLoki.length) % (this.AppsLoki.length + 1)
     },
-    onRight: function () {
-      const l = Math.floor(this.currentSelect / 4)
-      let newS = (this.currentSelect + 1) % 4 + l * 4
-      if (newS >= this.AppsMenu.length) {
-        newS = l * 4
-      }
-      this.currentSelect = newS
+    onRight () {
+      this.currentSelect = (this.currentSelect + 1) % (this.AppsLoki.length + 1)
     },
-    onUp: function () {
-      let newS = this.currentSelect - 4
-      if (newS < 0) {
-        const r = this.currentSelect % 4
-        newS = Math.floor((this.AppsMenu.length - 1) / 4) * 4
-        this.currentSelect = Math.min(newS + r, this.AppsMenu.length - 1)
-      } else {
-        this.currentSelect = newS
-      }
+    onUp () {
+      this.currentSelect = Math.max(this.currentSelect - 4, 0)
     },
-    onDown: function () {
-      const r = this.currentSelect % 4
-      let newS = this.currentSelect + 4
-      if (newS >= this.AppsMenu.length) {
-        newS = r
-      }
-      this.currentSelect = newS
+    onDown () {
+      this.currentSelect = Math.min(this.currentSelect + 4, this.AppsLoki.length)
     },
     openApp (app) {
       this.$router.push({ name: app.routeName })
     },
     onEnter () {
-      this.openApp(this.AppsMenu[this.currentSelect])
+      this.openApp(this.AppsLoki[this.currentSelect] || {routeName: 'lokistore'})
     },
-    onBack: function () {
+    onBack () {
       this.$router.push({ name: 'home' })
     }
-  },
-  mounted () {
   },
   created () {
     if (!this.useMouse) {
@@ -108,23 +84,20 @@ export default {
 </script>
 
 <style scoped>
+.main{
+background-image: url('/html/static/img/background/lokistorebackground.png');
+width: 100%;
+height: 100%;
+background-size: contain; 
+background-repeat: no-repeat;
+background-color: #141414;
+}
 .menu{
-  position: relative;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  padding: 6px 8px;
-}
-.backblur{
-  top: -6px;
-  left: -6px;
-  right:-6px;
-  bottom: -6px;
-  position: absolute;
-  background-size: cover !important;
-  background-position: center !important;
-  filter: blur(6px);
+  padding: 95px 5px;
 }
 .menu_content {
   display: flex;
@@ -195,5 +168,4 @@ button.select, button:hover{
   background-color: rgba(255,255,255, 0.7);
   border-radius: 12px;
 }
-
 </style>

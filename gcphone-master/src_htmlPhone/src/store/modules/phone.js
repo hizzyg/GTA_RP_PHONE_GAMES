@@ -95,8 +95,9 @@ const getters = {
     return (LABEL, defaultValue) => {
       return config.language[lang][LABEL] || defaultValue || LABEL
     }
-  }
-
+  },
+  AppsLoki: (state, getters) => getters.Apps.filter(app => app.inLokiPage === true),
+  AppsMenu: (state, getters) => getters.Apps.filter(app => app.inMenuPage === true)
 }
 
 const actions = {
